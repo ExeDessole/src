@@ -1,0 +1,23 @@
+<div>
+    {{#if singleProduct}}
+        <div class="card" style="width: 18rem;">
+            <img src="{{singleProduct.thumbnail}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{singleProduct.title}} $: {{singleProduct.price}}</h5>
+                <p class="card-text">{{singleProduct.description}}</p>
+                <p class="card-text">Stock: {{singleProduct.stock}}</p>
+            </div>
+        </div>
+    {{else}}
+        {{#each productsList}}
+            <div class="card" style="width: 18rem;">
+                <img src="{{thumbnail}}" class="card-img-top" alt="{{title}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}} $: {{price}}</h5>
+                    <p class="card-text">{{description}}</p>
+                    <p class="card-text">Stock: {{stock}}</p>
+                </div>
+            </div>
+        {{/each}}
+    {{/if}}
+</div>

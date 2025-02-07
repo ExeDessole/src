@@ -1,0 +1,114 @@
+[
+  {
+    "title": "Pizza Margarita",
+    "description": "Pizza con salsa de tomate, mozzarella y albahaca.",
+    "price": 8.99,
+    "thumbnail": "https://example.com/pizza-margarita.jpg",
+    "code": "PIZZA001",
+    "stock": 25
+  },
+  {
+    "title": "Hamburguesa Clásica",
+    "description": "Hamburguesa con carne de res, lechuga, tomate y queso cheddar.",
+    "price": 6.5,
+    "thumbnail": "https://example.com/hamburguesa-clasica.jpg",
+    "code": "BURGER001",
+    "stock": 30
+  },
+  {
+    "title": "Sushi Roll de Salmón",
+    "description": "Roll de sushi con salmón, arroz y alga nori.",
+    "price": 12.99,
+    "thumbnail": "https://example.com/sushi-roll-salmon.jpg",
+    "code": "SUSHI001",
+    "stock": 15
+  },
+  {
+    "title": "Taco de Carnitas",
+    "description": "Taco mexicano con carne de cerdo deshebrada y cilantro.",
+    "price": 3.99,
+    "thumbnail": "https://example.com/taco-carnitas.jpg",
+    "code": "TACO001",
+    "stock": 50
+  },
+  {
+    "title": "Pasta Alfredo",
+    "description": "Fetuccini con salsa Alfredo y parmesano.",
+    "price": 9.99,
+    "thumbnail": "https://example.com/pasta-alfredo.jpg",
+    "code": "PASTA001",
+    "stock": 20
+  },
+  {
+    "title": "Ensalada César",
+    "description": "Ensalada con lechuga romana, crutones y aderezo César.",
+    "price": 7.5,
+    "thumbnail": "https://example.com/ensalada-cesar.jpg",
+    "code": "ENSALADA001",
+    "stock": 18
+  },
+  {
+    "title": "Hot Dog Americano",
+    "description": "Pan con salchicha, mostaza, ketchup y cebolla.",
+    "price": 4.99,
+    "thumbnail": "https://example.com/hotdog-americano.jpg",
+    "code": "HOTDOG001",
+    "stock": 40
+  },
+  {
+    "title": "Burrito de Pollo",
+    "description": "Burrito relleno de pollo, arroz y frijoles.",
+    "price": 8.5,
+    "thumbnail": "https://example.com/burrito-pollo.jpg",
+    "code": "BURRITO001",
+    "stock": 22
+  },
+  {
+    "title": "Empanada de Carne",
+    "description": "Empanada horneada con relleno de carne y especias.",
+    "price": 2.99,
+    "thumbnail": "https://example.com/empanada-carne.jpg",
+    "code": "EMPANADA001",
+    "stock": 35
+  },
+  {
+    "title": "Helado de Vainilla",
+    "description": "Helado cremoso de vainilla con trozos de chocolate.",
+    "price": 5.0,
+    "thumbnail": "https://example.com/helado-vainilla.jpg",
+    "code": "HELADO001",
+    "stock": 28
+  },
+  {
+    "title": "Ravioles de Ricotta",
+    "description": "Pasta rellena de ricotta y espinaca con salsa de tomate.",
+    "price": 11.99,
+    "thumbnail": "https://example.com/ravioles-ricotta.jpg",
+    "code": "RAVIOLES001",
+    "stock": 20
+  },
+  {
+    "title": "Tarta de Manzana",
+    "description": "Tarta de manzana con canela y masa crocante.",
+    "price": 6.50,
+    "thumbnail": "https://example.com/tarta-manzana.jpg",
+    "code": "TARTA002",
+    "stock": 15
+  },
+  {
+    "title": "Milanesa Napolitana",
+    "description": "Milanesa de carne con jamón, queso y salsa de tomate.",
+    "price": 9.99,
+    "thumbnail": "https://example.com/milanesa-napolitana.jpg",
+    "code": "MILANESA001",
+    "stock": 18
+  },
+  {
+    "title": "Falafel con Hummus",
+    "description": "Bocadillos de garbanzo fritos con hummus casero.",
+    "price": 7.99,
+    "thumbnail": "https://example.com/falafel-hummus.jpg",
+    "code": "FALAFEL001",
+    "stock": 22
+  }
+]

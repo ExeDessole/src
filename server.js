@@ -6,7 +6,18 @@ import viewsRouter from './routes/views.router.js';
 import { __dirname } from './utils.js';
 import path from 'path';
 import { engine } from 'express-handlebars';
-import { Server } from 'socket.io';
+import mongoose from 'mongoose';
+
+// Configuración de mongoose
+const MONGO_URI = 'mongodb://localhost:27017/tienda'; 
+
+try {
+    await mongoose.connect(MONGO_URI);
+    console.log('Conectado a MongoDB');
+} catch (error) {
+    console.error('Error al conectar a MongoDB:', error);
+}
+
 
 //Configuración de Express
 const app = express();
