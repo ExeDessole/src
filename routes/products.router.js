@@ -1,61 +1,57 @@
 import { Router } from 'express';
 import Product from '../models/products.model.js';
 
+// Este modulo solo tiene acceso el administrador (en este caso sin autenticar).
+// Se aplican algunas funciones C-R-U-D con los métodos del protocolo HTTP (SOLO FORMATO JSON)
 const productsRouter = Router();
-//El siguiente endpoint devuelve todos los productos renderizados con handlebars.
-productsRouter.get("/products", async (req, res) => {
-  try {
-    // Obtener la página actual desde los parámetros de la consulta, con un valor predeterminado de 1
-    const page = parseInt(req.query.page) || 1;
-      
-    const sortParam = req.query.sort || 'price_asc';
-    let sort = { price: 1 }; 
 
-    // Cambiar el orden dependiendo del valor de sortParam
-    if (sortParam === 'price_desc') {
-      sort = { price: -1 }; // Ordenar de mayor a menor
+// CREATE crea un producto y lo envía al servidor con el método POST.
+productsRouter.post("/", async (req, res) => {
+    try {
+      const newProduct = new Product(req.body);
+      await newProduct.save();
+      res.status(201).json({ message: "Producto creado", product: newProduct });
+    } catch (error) {
+      res.status(500).json({ error: "Error al crear el producto", details: error.message });
     }
+  });
 
-    // Obtener los productos paginados
-    const productsList = await Product.paginate({}, { limit: 4, page, sort });
+// READ pide al servidor todos los productos sin renderizar en formato JSON mediante el método GET.
+productsRouter.get("/", async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({ error: "Error al obtener productos" });
+    }
+  });
 
-    // Mapear los productos para quitar el _id
-    const productsListRecupero = productsList.docs.map(product => {
-      const { _id, ...rest } = product.toObject();
-      return rest;
-    });
+// UPDATE actualiza un producto por ID mediante el método PUT.
+productsRouter.put("/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
+  
+      if (!updatedProduct) return res.status(404).json({ error: "Producto no encontrado" });
+  
+      res.status(200).json({ message: "Producto actualizado", product: updatedProduct });
+    } catch (error) {
+      res.status(500).json({ error: "ID inválido o error en el servidor", details: error.message });
+    }
+  });
+  
+// DELETE: eliminae un producto por ID con el método DELETE.
+productsRouter.delete("/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedProduct = await Product.findByIdAndDelete(id);
 
-    // Pasar los datos a la vista
-    res.status(200).render('products', {
-      productsListRecupero,
-      hasPrevPage: productsList.hasPrevPage,
-      hasNextPage: productsList.hasNextPage,
-      prevPage: productsList.prevPage,
-      nextPage: productsList.nextPage,
-      currentPage: productsList.page,
-      totalPages: productsList.totalPages
-    });
-  } catch (error) {
-    res.status(500).json({ error: "Error al obtener productos" });
-  }
+        if (!deletedProduct) return res.status(404).json({ error: "Producto no encontrado" });
+
+        res.status(200).json({ message: "Producto eliminado", product: deletedProduct });
+    } catch (error) {
+        res.status(500).json({ error: "ID inválido o error en el servidor", details: error.message });
+    }
 });
-
-// El siguiente endpoint devuelve todos los productos sin renderizar
-productsRouter.get("/api/products", async (req, res) => {
-  try {
-      const products = await Product.find();
-      res.status(200).json(products);
-  } catch (error) {
-      res.status(500).json({ error: "Error al obtener productos" });
-  }
-});
-
-// El siguiente endpoint devuelve los productos por ID
-productsRouter.get("/api/products/:id([0-9]+)", (req,res) =>{
-  const {id} = req.params
-  res
-    .status(200)
-    .send(`Estás en la ruta de productos "Seleccionados por ID". El ID es: ${id}`)
-})
 
 export default productsRouter;

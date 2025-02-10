@@ -1,0 +1,8 @@
+<h1>Lista de Carritos</h1>
+<ul>
+  {{#each carts}}
+    <li>
+        <a href="/carts/{{this._id}}">Carrito ID: {{this._id}}</a>
+    </li>
+  {{/each}}
+</ul>

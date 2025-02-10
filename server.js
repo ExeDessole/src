@@ -1,24 +1,24 @@
 //Modulos implementados
 import express from 'express';
+import mongoose from 'mongoose';
+import { engine } from 'express-handlebars';
 import cartsRouter from './routes/carts.router.js';
 import productsRouter from './routes/products.router.js';
 import viewsRouter from './routes/views.router.js';
 import { __dirname } from './utils.js';
 import path from 'path';
-import { engine } from 'express-handlebars';
-import mongoose from 'mongoose';
 
 // Configuración de mongoose
 const MONGO_URI = 'mongodb://localhost:27017/tienda'; 
-
-try {
-    await mongoose.connect(MONGO_URI);
-    console.log('Conectado a MongoDB');
-} catch (error) {
-    console.error('Error al conectar a MongoDB:', error);
-}
-
-
+const connectDB = async () =>{
+    try {
+        await mongoose.connect(MONGO_URI);
+        console.log('Conectado a MongoDB');
+    } catch (error) {
+        console.error('Error al conectar a MongoDB:', error);
+    }
+};
+connectDB();
 //Configuración de Express
 const app = express();
 
@@ -40,8 +40,8 @@ app.set('view engine', 'handlebars');
 app.set('views', path.join(`${__dirname}/views`));
  
 //Rutas modularizadas
-app.use("/", cartsRouter);
-app.use("/", productsRouter);
+app.use("/api/carts", cartsRouter);
+app.use("/api/products", productsRouter);
 app.use("/", viewsRouter);
 
 // Middleware para archivos estáticos
@@ -56,4 +56,4 @@ app.get("*", (req,res) =>{
 
 //Configuración del SERVER
 const PORT = 8080;
-const SERVER = app.listen(PORT, ()=> console.log(`Servidor corriendo en PUERTO: ${PORT}`));
+app.listen(PORT, ()=> console.log(`Servidor corriendo en PUERTO: ${PORT}`));
